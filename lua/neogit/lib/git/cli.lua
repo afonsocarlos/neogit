@@ -979,6 +979,7 @@ local function new_builder(subcommand)
       await = false,
       long = false,
       pty = false,
+      fixendofline = vim.o.fixendofline,
     })
 
     if opts.pty then
@@ -1074,6 +1075,10 @@ local function new_builder(subcommand)
 
       if opts.remove_ansi then
         result:remove_ansi()
+      end
+
+      if opts.fixendofline then
+        result:fixendofline()
       end
 
       return result

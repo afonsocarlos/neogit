@@ -71,6 +71,20 @@ function ProcessResult:remove_ansi()
   return self
 end
 
+function ProcessResult:fixendofline()
+  local BLANK = ""
+
+  if self.stdout[#self.stdout] == BLANK then
+    table.remove(self.stdout)
+  end
+
+  if self.stderr[#self.stderr] == BLANK then
+    table.remove(self.stderr)
+  end
+
+  return self
+end
+
 ProcessResult.__index = ProcessResult
 
 ---@param process Process
